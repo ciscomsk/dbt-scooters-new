@@ -1,7 +1,8 @@
 SELECT
     t.*,
     u.sex,
-    EXTRACT(YEAR FROM t.started_at) - EXTRACT(YEAR FROM u.birth_date) AS age
+    EXTRACT(YEAR FROM t.started_at) - EXTRACT(YEAR FROM u.birth_date) AS age,
+    {{ updated_at() }}
 FROM {{ ref("trips_prep") }} AS t
 LEFT JOIN {{ source("scooters_raw", "users") }} AS u
     ON t.user_id = u.id

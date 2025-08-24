@@ -36,7 +36,8 @@ cumsum_cte AS (
 )
 SELECT
     timestamp,
-    concurrency
+    concurrency,
+    {{ updated_at() }}
 FROM cumsum_cte
 WHERE preserve_row
 ORDER BY timestamp
