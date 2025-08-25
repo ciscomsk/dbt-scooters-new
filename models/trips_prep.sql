@@ -15,5 +15,5 @@ SELECT
         WHEN price = 0 AND started_at != finished_at THEN true
         ELSE false
     END AS is_free,
-    started_at::date AS date
+    {{ date_in_moscow('started_at') }} AS date
 FROM {{ source("scooters_raw", "trips") }}
